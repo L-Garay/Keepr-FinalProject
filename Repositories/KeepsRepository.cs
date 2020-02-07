@@ -23,10 +23,33 @@ namespace Keepr.Repositories
 
     internal Keep Create(Keep KeepData)
     {
-      string sql = @"INSERT INTO keeps (name, description, img, isPrivate) VALUES (@Name, @Description, @Img, @IsPrivate;";
+      string sql = @"INSERT INTO keeps (name, description, img, isPrivate) VALUES (@Name, @Description, @Img, @IsPrivate);
+      SELECT LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, KeepData);
       KeepData.Id = id;
       return KeepData;
+    }
+
+    internal Keep GetById(int id)
+    {
+      string sql = "SELECT * FROM keeps WHERE id = @id";
+      return _db.QueryFirstOrDefault<Keep>(sql, new { id });
+    }
+    internal void Edit(Keep update)
+    {
+      string sql = @"
+            UPDATE keeps
+            SET 
+            isPrivate = @IsPrivate,
+            WHERE id = @Id; 
+            ";
+      _db.Execute(sql, update);
+    }
+
+    internal void Delete(int id)
+    {
+      string sql = "DELETE FROM keeps WHERE id = @id";
+      _db.Execute(sql, new { id });
     }
   }
 }
