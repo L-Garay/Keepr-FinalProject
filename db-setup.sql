@@ -1,4 +1,4 @@
--- USE keepr13;
+USE logankeeprfinal;
 
 -- CREATE TABLE vaults (
 --     id int NOT NULL AUTO_INCREMENT,
@@ -42,6 +42,10 @@
 --         ON DELETE CASCADE
 -- )
 
+
+-- INSERT INTO keeps (name, description, img, isPrivate) VALUES ("TestKeep1", "This is a test", "image url goes here", 1);
+-- INSERT INTO keeps (name, description, img, isPrivate) VALUES ("TestKeep2", "This is a test also", "image url goes here", 0);
+-- INSERT INTO keeps (name, description, img, isPrivate) VALUES ("TestKeep3", "This is also a test", "image url goes here", 1);
 
 -- -- USE THIS LINE FOR GET KEEPS BY VAULTID
 -- SELECT k.* FROM vaultkeeps vk
