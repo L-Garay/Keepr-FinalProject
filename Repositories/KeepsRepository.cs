@@ -17,7 +17,7 @@ namespace Keepr.Repositories
 
     internal IEnumerable<Keep> Get()
     {
-      string sql = "SELECT * FROM Keeps WHERE isPrivate = 0;";
+      string sql = "SELECT * FROM keeps WHERE isPrivate = 0;";
       return _db.Query<Keep>(sql);
     }
 
@@ -40,9 +40,7 @@ namespace Keepr.Repositories
       string sql = @"
             UPDATE keeps
             SET 
-            isPrivate = @IsPrivate,
-            WHERE id = @Id; 
-            ";
+            isPrivate = @isPrivate, name = @Name, description = @Description, img = @Img WHERE id = @Id;";
       _db.Execute(sql, update);
     }
 
