@@ -20,18 +20,19 @@ namespace Keepr.Controllers
     {
       _vs = vs;
     }
-    // [HttpGet]
-    // public ActionResult<IEnumerable<Vault>> Get()
-    // {
-    //   try
-    //   {
-    //     return Ok(_vs.Get());
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   };
-    // }
+    [HttpGet]
+    public ActionResult<IEnumerable<Vault>> Get()
+    {
+      try
+      {
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vs.Get(userId));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      };
+    }
     [HttpGet("{id}")]
     public ActionResult<Vault> Get(int id)
     {
