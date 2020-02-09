@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Keepr.Models;
 using Keepr.Repositories;
 
@@ -12,20 +13,25 @@ namespace Keepr.Services
       _vkr = vkr;
     }
 
-    internal object Create(VaultKeep newData)
+    internal IEnumerable<Keep> GetKeepsByVaultId(int id)
     {
-      VaultKeep exists = _vkr.Find(newData);
-      if (exists != null) { throw new Exception("Student already enrolled"); }
+      return _vkr.GetKeepsByVaultId(id);
+    }
+    internal VaultKeep Create(VaultKeep newData)
+    {
+      // VaultKeep exists = _vkr.Find(newData);
+      // if (exists != null) { throw new Exception("Already a combination"); }
       _vkr.Create(newData);
-      return "Successfully Joined";
+      return newData;
     }
 
-    internal object Delete(VaultKeep vk)
+    internal string Delete(VaultKeep vk)
     {
       VaultKeep exists = _vkr.Find(vk);
       if (exists == null) { throw new Exception("Invalid Id Combination"); }
       _vkr.Delete(exists.Id);
-      return "Successfully Deleted";
+      return "Successfully deleted";
     }
+
   }
 }

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using Keepr.Models;
 using Keepr.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +16,25 @@ namespace Keepr.Controllers
     {
       _vks = vks;
     }
-    [HttpPost]
-    public ActionResult<string> Create([FromBody] VaultKeep newData)
+    [HttpGet("{id}/keeps")]
+    public ActionResult<IEnumerable<Keep>> GetKeeps(int id)
     {
       try
       {
+        return Ok(_vks.GetKeepsByVaultId(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+    [HttpPost]
+    public ActionResult<VaultKeep> Create([FromBody] VaultKeep newData)
+    {
+      try
+      {
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        newData.UserId = userId;
         return Ok(_vks.Create(newData));
       }
       catch (Exception e)
@@ -27,7 +43,7 @@ namespace Keepr.Controllers
       }
     }
     [HttpPut("{id}")]
-    public ActionResult<String> Edit([FromBody] VaultKeep vk)
+    public ActionResult<String> Delete([FromBody] VaultKeep vk)
     {
       try
       {
