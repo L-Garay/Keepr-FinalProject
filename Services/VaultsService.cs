@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+
 using Keepr.Models;
 using Keepr.Repositories;
+
 
 namespace Keepr.Services
 {
@@ -24,10 +26,14 @@ namespace Keepr.Services
       return newVault;
     }
 
-    internal Vault GetById(int id)
+    internal Vault GetById(object test)
     {
-      var exists = _repo.GetById(id);
+      var exists = _repo.GetById(test.);
       if (exists == null) { throw new Exception("Invalid Id"); }
+      else if ()
+      {
+
+      }
       return exists;
     }
 
