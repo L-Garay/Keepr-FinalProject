@@ -26,13 +26,13 @@ namespace Keepr.Services
       return newVault;
     }
 
-    internal Vault GetById(object test)
+    internal Vault GetById(int id, string UserId)
     {
-      var exists = _repo.GetById(test.);
+      var exists = _repo.GetById(id);
       if (exists == null) { throw new Exception("Invalid Id"); }
-      else if ()
+      else if (exists.UserId != UserId)
       {
-
+        throw new Exception("You can't access that");
       }
       return exists;
     }
