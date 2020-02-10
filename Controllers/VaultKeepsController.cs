@@ -42,7 +42,7 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpPut("{id}")]
+    [HttpPut("{id}/keeps/{id}")]
     public ActionResult<String> Delete([FromBody] VaultKeep vk)
     {
       try
