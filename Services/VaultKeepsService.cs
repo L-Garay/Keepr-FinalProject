@@ -34,7 +34,7 @@ namespace Keepr.Services
 
     internal string Delete(int vaultId, int keepId, string userId)
     {
-      VaultKeep exists = _vkr.Find(vaultId, keepId);
+      VaultKeep exists = _vkr.Find(keepId, vaultId);
       if (exists == null) { throw new Exception("Can't find it"); }
       else if (exists.UserId != userId)
       {
