@@ -33,6 +33,7 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       };
     }
+    //When I pass along the userId into the GetById function and add a userId check in the service it throws this error "object reference not set to an instance of an object"
     [HttpGet("{id}")]
     public ActionResult<Vault> Get(int id)
     {

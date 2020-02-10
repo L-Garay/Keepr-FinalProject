@@ -25,7 +25,7 @@ namespace Keepr.Services
       _repo.Create(newVault);
       return newVault;
     }
-
+    //when I pass along the userId into this function and add the userId check, it throws this error "object reference not set to an instance of an object"
     internal Vault GetById(int id, string UserId)
     {
       var exists = _repo.GetById(id);
