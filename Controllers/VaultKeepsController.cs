@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using Keepr.Models;
 using Keepr.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
@@ -42,12 +43,14 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpPut("{id}/keeps/{id}")]
-    public ActionResult<String> Delete([FromBody] VaultKeep vk)
+    [HttpDelete("{vaultId}/keeps/{keepId}")]
+    [Authorize]
+    public ActionResult<String> Delete(int vaultId, int keepId)
     {
       try
       {
-        return Ok(_vks.Delete(vk));
+        var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vks.Delete(vaultId, keepId, userId));
       }
       catch (Exception e)
       {

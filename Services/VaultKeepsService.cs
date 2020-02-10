@@ -25,10 +25,14 @@ namespace Keepr.Services
       return newData;
     }
 
-    internal string Delete(VaultKeep vk)
+    internal string Delete(int vaultId, int keepId, string userId)
     {
-      VaultKeep exists = _vkr.Find(vk);
-      if (exists == null) { throw new Exception("Invalid Id Combination"); }
+      VaultKeep exists = _vkr.Find(vaultId, keepId);
+      if (exists == null) { throw new Exception("Can't find it"); }
+      else if (exists.UserId != userId)
+      {
+        throw new Exception("You can't do that");
+      }
       _vkr.Delete(exists.Id);
       return "Successfully deleted";
     }

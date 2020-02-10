@@ -14,10 +14,10 @@ namespace Keepr.Repositories
       _db = db;
     }
 
-    internal VaultKeep Find(VaultKeep newData)
+    internal VaultKeep Find(int vaultId, int keepId)
     {
       string sql = "SELECT * FROM vaultkeeps WHERE (vaultId = @vaultId AND keepId = @keepId)";
-      return _db.QueryFirstOrDefault(sql, newData);
+      return _db.QueryFirstOrDefault(sql, new { vaultId, keepId });
     }
 
     internal IEnumerable<Keep> GetKeepsByVaultId(int id)
