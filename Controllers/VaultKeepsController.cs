@@ -30,7 +30,7 @@ namespace Keepr.Controllers
       }
     }
     [HttpPost]
-    public ActionResult<VaultKeep> Create([FromBody] VaultKeep newData)
+    public ActionResult<String> Create([FromBody] VaultKeep newData)
     {
       try
       {

@@ -30,7 +30,7 @@ USE logankeeprfinal;
 --     userId VARCHAR(255) NOT NULL,
 
 --     PRIMARY KEY (id),
---     INDEX (vaultId, keepId),
+--     UNIQUE INDEX (vaultId, keepId),
 --     INDEX (userId),
 
 --     FOREIGN KEY (vaultId)

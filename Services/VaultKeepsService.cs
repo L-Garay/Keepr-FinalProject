@@ -17,12 +17,19 @@ namespace Keepr.Services
     {
       return _vkr.GetKeepsByVaultId(id);
     }
-    internal VaultKeep Create(VaultKeep newData)
+    internal string Create(VaultKeep newData)
     {
-      // VaultKeep exists = _vkr.Find(newData);
-      // if (exists != null) { throw new Exception("Already a combination"); }
-      _vkr.Create(newData);
-      return newData;
+      VaultKeep exists = _vkr.Find(newData.KeepId, newData.VaultId);
+      if (exists == null)
+      {
+        _vkr.Create(newData);
+
+      }
+      else if (exists != null)
+      {
+        return "Already exists";
+      }
+      return "Successfully Created";
     }
 
     internal string Delete(int vaultId, int keepId, string userId)

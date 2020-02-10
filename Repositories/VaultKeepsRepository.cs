@@ -14,10 +14,10 @@ namespace Keepr.Repositories
       _db = db;
     }
 
-    internal VaultKeep Find(int vaultId, int keepId)
+    internal VaultKeep Find(int keepId, int vaultId)
     {
       string sql = "SELECT * FROM vaultkeeps WHERE (vaultId = @vaultId AND keepId = @keepId)";
-      return _db.QueryFirstOrDefault(sql, new { vaultId, keepId });
+      return _db.QueryFirstOrDefault<VaultKeep>(sql, new { vaultId, keepId });
     }
 
     internal IEnumerable<Keep> GetKeepsByVaultId(int id)
@@ -27,7 +27,7 @@ namespace Keepr.Repositories
       return _db.Query<Keep>(sql, new { id });
     }
 
-    internal VaultKeep Create(VaultKeep newData)
+    internal void Create(VaultKeep newData)
     {
       string sql = @"
             INSERT INTO vaultkeeps 
@@ -38,7 +38,7 @@ namespace Keepr.Repositories
             ";
       int id = _db.ExecuteScalar<int>(sql, newData);
       newData.Id = id;
-      return newData;
+
     }
 
     internal void Delete(int id)
