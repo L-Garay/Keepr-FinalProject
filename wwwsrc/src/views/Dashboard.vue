@@ -3,10 +3,15 @@
     <div class="row">
       <div class="col-12 d-flex flex-column align-items-center">
         <h2>Welcome to your Dashboard!</h2>
-        <h5>Here you can see the keeps you've created OR create and view your Vaults.</h5>
+        <h5>
+          Here you can see the keeps you've created OR create and view your
+          Vaults.
+        </h5>
       </div>
       <div class="col-12">
-        <button class="btn btn-success" type="button" @click="toggleForm">Create a Vault</button>
+        <button class="btn btn-success" type="button" @click="toggleForm">
+          Create a Vault
+        </button>
       </div>
       <div class="col-12" v-if="showForm">
         <div id="form">
@@ -38,9 +43,13 @@
         </div>
       </div>
     </div>
-    <div class="row card-section">
-      <div class="card-deck">
-        <vault v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
+    <div class="vaultSection">
+      <div class="row">
+        <div class="col-2 fakeCard" v-for="vault in vaults" :key="vault.id">
+          <h5>{{ vault.name }}</h5>
+          <p>{{ vault.description }}</p>
+        </div>
+        <!-- <vault  :vaultData="vault" /> -->
       </div>
     </div>
     <div class="row yourKeeps-section">
@@ -101,14 +110,25 @@ export default {
 </script>
 
 <style>
-.card-section {
-  margin: 20pt 5pt;
-  display: flex;
-  height: 25vh;
-  overflow-x: scroll;
+.vaultSection {
+  border: 3pt solid red;
+  height: 40vh;
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 10pt 0 10pt 0;
+}
+.vaultSection .row {
+  width: 300%;
+  padding-left: 10pt;
+}
+.fakeCard {
+  border: 1pt solid black;
+  margin: 5pt;
+  max-width: 18em;
+  padding: 10pt;
 }
 .yourKeeps-section {
-  height: 70vh;
+  height: 100vh;
   overflow-y: scroll;
 }
 </style>
