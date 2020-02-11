@@ -15,21 +15,17 @@ export default {
   name: "singlevault",
   mounted() {
     this.$store.dispatch("getKeepsByVaultId", this.$route.params.vaultId);
-    this.$store.dispatch("getVaults");
+    this.$store.dispatch("getVaultById", this.$route.params.vaultId);
   },
   computed: {
     vault() {
-      return (
-        this.$store.state.vaults.find(v => v.id == this.vaultId) || {
-          title: "Loading..."
-        }
-      );
+      console.log(this.vaultId);
+      return this.$store.state.activeVault;
     },
     keeps() {
       return this.$store.state.keeps;
     }
-  },
-  props: ["vaultId"]
+  }
 };
 </script>
 

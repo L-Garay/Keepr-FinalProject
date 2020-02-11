@@ -21,6 +21,7 @@ export default new Vuex.Store({
     privateKeeps: [],
     myKeeps: [],
     vaults: [],
+    activeVault: {},
     user: {}
   },
   mutations: {
@@ -35,6 +36,10 @@ export default new Vuex.Store({
     setMyKeeps(state, keepData) {
       console.log(keepData);
       state.myKeeps = keepData;
+    },
+    setActiveVault(state, vaultData) {
+      console.log("this should be active vault", vaultData);
+      state.activeVault = vaultData;
     }
   },
   actions: {
@@ -72,6 +77,10 @@ export default new Vuex.Store({
     async getVaults({ commit, dispatch }) {
       let res = await api.get("vaults");
       commit("setVaults", res.data);
+    },
+    async getVaultById({ commit, dispatch }, vaultId) {
+      let res = await api.get("vaults/" + vaultId);
+      commit("setActiveVault", res.data);
     }
 
     //#endregion
