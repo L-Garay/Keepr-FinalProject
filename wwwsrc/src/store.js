@@ -57,6 +57,11 @@ export default new Vuex.Store({
       let res = await api.get("keeps/User");
       commit("setMyKeeps", res.data);
     },
+    async getKeepsByVaultId({ commit, dispatch }, vaultId) {
+      let res = await api.get("vaults/" + vaultId + "/keeps");
+      commit("setMyKeeps", res.data);
+      console.log("this is the data from keepbyvaultid", res.data);
+    },
 
     //#endregion
     //#region -- VAULTS --

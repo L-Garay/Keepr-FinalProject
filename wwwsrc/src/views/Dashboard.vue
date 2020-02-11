@@ -46,7 +46,11 @@
     <div class="vaultSection">
       <div class="row">
         <div class="col-2 fakeCard" v-for="vault in vaults" :key="vault.id">
-          <h5>{{ vault.name }}</h5>
+          <router-link
+            :to="{ name: 'singlevault', params: { vaultId: vault.id } }"
+          >
+            <h5>{{ vault.name }}</h5></router-link
+          >
           <p>{{ vault.description }}</p>
         </div>
         <!-- <vault  :vaultData="vault" /> -->
