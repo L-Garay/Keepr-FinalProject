@@ -23,7 +23,6 @@
               <input
                 v-model="newKeep.imgUrl"
                 class="form-control"
-                required
                 type="text"
                 placeholder="What's your keep about"
               />
@@ -37,6 +36,7 @@
                 rows="3"
                 maxlength="300"
                 placeholder="What's your keep about"
+                required
               ></textarea>
             </div>
             <div>
@@ -52,18 +52,12 @@
                 for="privacyCheck"
               >Check this if you want to make it private</label>
             </div>
-            <button
-              @click="toggleForm"
-              class="btn btn-success bug-submit-btn"
-              type="submit"
-            >Submit Keep</button>
+            <button class="btn btn-success" type="submit">Submit Keep</button>
           </form>
         </div>
       </div>
       <div class="card-columns">
-        <div v-for="keep in publicKeeps" :key="keep.id">
-          <keep :keepData="keep" />
-        </div>
+        <keep v-for="keep in publicKeeps" :key="keep.id" :keepData="keep" />
       </div>
     </div>
   </div>
@@ -83,6 +77,9 @@ export default {
         private: false
       }
     };
+  },
+  mounted() {
+    this.$store.dispatch("getKeeps");
   },
   computed: {
     user() {
