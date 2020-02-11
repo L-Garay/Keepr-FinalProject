@@ -43,12 +43,17 @@
         <vault v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
       </div>
     </div>
-    <div class="row yourKeeps-section"></div>
+    <div class="row yourKeeps-section">
+      <div class="card-columns">
+        <keep v-for="keep in myKeeps" :key="keep.id" :keepData="keep" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Vault from "@/components/Vault.vue";
+import Keep from "@/components/Keep.vue";
 export default {
   data() {
     return {
@@ -61,10 +66,14 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getVaults");
+    this.$store.dispatch("getMyKeeps");
   },
   computed: {
     vaults() {
       return this.$store.state.vaults;
+    },
+    myKeeps() {
+      return this.$store.state.myKeeps;
     }
   },
   methods: {
@@ -85,9 +94,21 @@ export default {
     }
   },
   components: {
-    Vault
+    Vault,
+    Keep
   }
 };
 </script>
 
-<style></style>
+<style>
+.card-section {
+  margin: 20pt 5pt;
+  display: flex;
+  height: 25vh;
+  overflow-x: scroll;
+}
+.yourKeeps-section {
+  height: 70vh;
+  overflow-y: scroll;
+}
+</style>

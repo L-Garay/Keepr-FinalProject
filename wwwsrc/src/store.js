@@ -19,6 +19,7 @@ export default new Vuex.Store({
   state: {
     publicKeeps: [],
     privateKeeps: [],
+    myKeeps: [],
     vaults: [],
     user: {}
   },
@@ -30,6 +31,10 @@ export default new Vuex.Store({
     setVaults(state, vaultData) {
       console.log(vaultData);
       state.vaults = vaultData;
+    },
+    setMyKeeps(state, keepData) {
+      console.log(keepData);
+      state.myKeeps = keepData;
     }
   },
   actions: {
@@ -47,6 +52,10 @@ export default new Vuex.Store({
     async getKeeps({ commit, dispatch }) {
       let res = await api.get("keeps");
       commit("setKeeps", res.data);
+    },
+    async getMyKeeps({ commit, dispatch }) {
+      let res = await api.get("keeps/User");
+      commit("setMyKeeps", res.data);
     },
 
     //#endregion
