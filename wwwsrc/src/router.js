@@ -6,6 +6,8 @@ import Home from "./views/Home.vue";
 import Dashboard from "./views/Dashboard.vue";
 // @ts-ignore
 import SingleVault from "./views/SingleVault.vue";
+// @ts-ignore
+import SingleKeep from "./views/SingleKeep.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
 
 Vue.use(Router);
@@ -28,6 +30,11 @@ export default new Router({
       name: "singlevault",
       component: SingleVault,
       beforeEnter: authGuard
+    },
+    {
+      path: "/keep/:keepId",
+      name: "singlekeep",
+      component: SingleKeep
     }
   ]
 });

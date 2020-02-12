@@ -1,9 +1,15 @@
 <template>
   <div class="card">
-    <img class="card-img-top" :src="keepData.img" alt="Testing image" />
+    <router-link :to="{ name: 'singlekeep', params: { keepId: keepData.id } }"
+      ><img class="card-img-top" :src="keepData.img" alt="Testing image"
+    /></router-link>
     <div class="card-body">
-      <h5 class="card-title">{{ keepData.name }}</h5>
-      <p class="card-text">{{ keepData.description }}</p>
+      <router-link
+        :to="{ name: 'singlekeep', params: { keepId: keepData.id } }"
+      >
+        <h5 class="card-title">{{ keepData.name }}</h5>
+        <p class="card-text">{{ keepData.description }}</p>
+      </router-link>
       <div class="d-flex">
         <button type="button" class="btn views">
           Views {{ keepData.views }}

@@ -19,7 +19,6 @@ export default {
   },
   computed: {
     vault() {
-      console.log(this.vaultId);
       return this.$store.state.activeVault;
     },
     keeps() {
