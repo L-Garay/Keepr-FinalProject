@@ -76,6 +76,11 @@ export default new Vuex.Store({
       commit("setMyKeeps", res.data);
       console.log("this is the data from keepbyvaultid", res.data);
     },
+    async deleteKeep({ commit, dispatch }, keepId) {
+      await api.delete("keeps/" + keepId);
+      dispatch("getKeeps");
+      router.push({ name: "home" });
+    },
 
     //#endregion
 
