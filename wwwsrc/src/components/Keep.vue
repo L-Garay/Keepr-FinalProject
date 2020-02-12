@@ -36,13 +36,16 @@ export default {
 .views {
   border: 1pt solid green;
   background-color: lightgreen;
+  margin: 5pt;
 }
 .shares {
   border: 1pt solid blue;
   background-color: lightskyblue;
+  margin: 5pt;
 }
 .keeps {
   border: 1pt solid yellow;
   background-color: lightyellow;
+  margin: 5pt;
 }
 </style>
