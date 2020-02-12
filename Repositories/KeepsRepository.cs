@@ -52,7 +52,7 @@ namespace Keepr.Repositories
       string sql = @"
             UPDATE keeps
             SET 
-            isPrivate = @isPrivate, name = @Name, description = @Description, img = @Img WHERE id = @Id;";
+            views = @Views, shares = @Shares, keeps = @Keeps, isPrivate = @isPrivate, name = @Name, description = @Description, img = @Img WHERE id = @Id;";
       _db.Execute(sql, update);
     }
 

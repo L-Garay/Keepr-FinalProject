@@ -89,6 +89,19 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpPut("{id}/views")]
+    public ActionResult<Keep> Edit([FromBody] Keep update)
+    {
+      try
+      {
+        return Ok(_ks.EditKeepViews(update));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpDelete("{id}")]
     [Authorize]
     public ActionResult<String> Delete(int id)

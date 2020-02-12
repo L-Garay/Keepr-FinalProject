@@ -78,6 +78,7 @@ export default new Vuex.Store({
     },
 
     //#endregion
+
     //#region -- VAULTS --
     async addVault({ commit, dispatch }, newVault) {
       await api.post("vaults", newVault);
@@ -90,6 +91,16 @@ export default new Vuex.Store({
     async getVaultById({ commit, dispatch }, vaultId) {
       let res = await api.get("vaults/" + vaultId);
       commit("setActiveVault", res.data);
+    },
+
+    //#endregion
+
+    //#region -- SOCIAL --
+    async editKeep({ commit, dispatch }, updatedKeep) {
+      debugger;
+      await api.put("keeps/views", updatedKeep);
+      dispatch("getKeeps");
+      dispatch("getKeepById", updatedKeep.id);
     }
 
     //#endregion

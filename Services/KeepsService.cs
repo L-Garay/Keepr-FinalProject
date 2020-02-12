@@ -47,7 +47,6 @@ namespace Keepr.Services
       return _repo.GetKeepsByVaultId(id);
     }
 
-
     internal Keep Edit(Keep update, string userId)
     {
       var exists = _repo.GetById(update.Id);
@@ -57,6 +56,17 @@ namespace Keepr.Services
         throw new Exception("You can't access that");
       }
       _repo.Edit(update);
+      return update;
+    }
+
+    internal Keep EditKeepViews(Keep update)
+    {
+      var exists = _repo.GetById(update.Id);
+      if (exists == null) { throw new Exception("Invalid Id"); }
+      else if (exists != null)
+      {
+        _repo.Edit(update);
+      }
       return update;
     }
 

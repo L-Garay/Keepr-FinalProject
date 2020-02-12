@@ -1,6 +1,8 @@
 <template>
   <div class="card">
-    <router-link :to="{ name: 'singlekeep', params: { keepId: keepData.id } }"
+    <router-link
+      @click="updateViews(keepData.id)"
+      :to="{ name: 'singlekeep', params: { keepId: keepData.id } }"
       ><img class="card-img-top" :src="keepData.img" alt="Testing image"
     /></router-link>
     <div class="card-body">
@@ -11,9 +13,18 @@
         <p class="card-text">{{ keepData.description }}</p>
       </router-link>
       <div class="d-flex">
-        <button type="button" class="btn views">
-          Views {{ keepData.views }}
-        </button>
+        <router-link
+          @click="updateViews(keepData.id)"
+          :to="{ name: 'singlekeep', params: { keepId: keepData.id } }"
+        >
+          <button
+            type="button"
+            @click="updateViews(keepData.id)"
+            class="btn views"
+          >
+            View {{ keepData.views }}
+          </button></router-link
+        >
         <button type="button" class="btn shares">
           Share {{ keepData.shares }}
         </button>
@@ -28,7 +39,24 @@
 <script>
 export default {
   name: "Keep",
-  props: ["keepData"]
+  props: ["keepData"],
+  methods: {
+    updateViews(keepId) {
+      let keepToUpdate = this.$store.state.publicKeeps.find(
+        k => k.id == keepId
+      );
+      if (keepToUpdate == null) {
+        let privateKeepToUpdate = this.$store.state.privateKeeps.find(
+          k => k.id == keepId
+        );
+        privateKeepToUpdate.views = privateKeepToUpdate.views + 1;
+        this.$store.dispatch("editKeep", privateKeepToUpdate);
+      } else if (keepToUpdate != null) {
+        keepToUpdate.views = keepToUpdate.views + 1;
+        this.$store.dispatch("editKeep", keepToUpdate);
+      }
+    }
+  }
 };
 </script>
 
