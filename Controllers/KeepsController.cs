@@ -89,7 +89,7 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpPut("{id}/views")]
+    [HttpPut("keepview")]
     public ActionResult<Keep> Edit([FromBody] Keep update)
     {
       try

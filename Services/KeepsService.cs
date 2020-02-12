@@ -65,6 +65,7 @@ namespace Keepr.Services
       if (exists == null) { throw new Exception("Invalid Id"); }
       else if (exists != null)
       {
+        update.Views++;
         _repo.Edit(update);
       }
       return update;

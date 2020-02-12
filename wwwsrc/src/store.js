@@ -97,10 +97,9 @@ export default new Vuex.Store({
 
     //#region -- SOCIAL --
     async editKeep({ commit, dispatch }, updatedKeep) {
-      debugger;
-      await api.put("keeps/views", updatedKeep);
+      await api.put("keeps/keepview", updatedKeep);
+      await dispatch("getKeepById", updatedKeep.id);
       dispatch("getKeeps");
-      dispatch("getKeepById", updatedKeep.id);
     }
 
     //#endregion
