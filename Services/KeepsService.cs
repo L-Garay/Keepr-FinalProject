@@ -17,9 +17,9 @@ namespace Keepr.Services
     {
       return _repo.Get();
     }
-    internal Keep GetById(int id)
+    internal Keep GetById(int keepId, string userId)
     {
-      var exists = _repo.GetById(id);
+      var exists = _repo.GetById(keepId);
       if (exists == null)
       {
         throw new Exception("Invalid Id");

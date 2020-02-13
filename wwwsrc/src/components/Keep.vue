@@ -69,6 +69,7 @@ export default {
         KeepId: keepId
       };
       this.$store.dispatch("createVaultKeep", vaultKeep);
+      // debugger;
       let keepToUpdate = this.$store.state.publicKeeps.find(
         k => k.id == keepId
       );
@@ -76,6 +77,12 @@ export default {
         let privateKeepToUpdate = this.$store.state.privateKeeps.find(
           k => k.id == keepId
         );
+        if (privateKeepToUpdate == null) {
+          let myKeepToUpdate = this.$store.state.myKeeps.find(
+            k => k.id == keepId
+          );
+          this.$store.dispatch("editKeepKeeps", myKeepToUpdate);
+        }
         this.$store.dispatch("editKeepKeeps", privateKeepToUpdate);
       } else if (keepToUpdate != null) {
         this.$store.dispatch("editKeepKeeps", keepToUpdate);
