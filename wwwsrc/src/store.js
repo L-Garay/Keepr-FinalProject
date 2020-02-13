@@ -110,6 +110,20 @@ export default new Vuex.Store({
       await api.put("keeps/keepview", updatedKeep);
       await dispatch("getKeepById", updatedKeep.id);
       dispatch("getKeeps");
+    },
+    async editKeepKeeps({ commit, dispatch }, updatedKeep) {
+      await api.put("keeps/keepkeeps", updatedKeep);
+      dispatch("getKeeps");
+    },
+
+    //#endregion
+
+    //#region -- VAULTKEEPS --
+    async createVaultKeep({ commit, dispatch }, vaultKeep) {
+      await api.post("vaultkeeps", vaultKeep);
+      debugger;
+      router.push({ name: "singlevault", params: { id: vaultKeep.VaultId } });
+      // dispatch("")
     }
 
     //#endregion

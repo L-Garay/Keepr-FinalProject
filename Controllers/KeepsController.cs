@@ -102,6 +102,20 @@ namespace Keepr.Controllers
       }
     }
 
+    [HttpPut("keepkeeps")]
+    [Authorize]
+    public ActionResult<Keep> EditKeepKeeps([FromBody] Keep update)
+    {
+      try
+      {
+        return Ok(_ks.EditKeepKeeps(update));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpDelete("{id}")]
     [Authorize]
     public ActionResult<String> Delete(int id)

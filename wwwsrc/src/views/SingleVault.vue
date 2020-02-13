@@ -1,14 +1,11 @@
 <template>
   <div class="container-fluid">
-    <div class="row ">
+    <div class="row">
       <div class="col-10 title">
         <h2>Welcom to your vault, {{ vault.name }}</h2>
       </div>
       <div class="col-2">
-        <i
-          class="far fa-trash-alt fa-lg deleteIcon"
-          @click="deleteVault(vault.id)"
-        ></i>
+        <i class="far fa-trash-alt fa-lg deleteIcon" @click="deleteVault(vault.id)"></i>
       </div>
       <div class="card-columns">
         <keep v-for="keep in keeps" :key="keep.id" :keepData="keep" />
@@ -35,8 +32,11 @@ export default {
       return this.$store.state.activeVault;
     },
     keeps() {
-      return this.$store.state.keeps;
+      return this.$store.state.myKeeps;
     }
+  },
+  components: {
+    Keep
   }
 };
 </script>

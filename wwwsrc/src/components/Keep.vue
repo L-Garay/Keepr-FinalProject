@@ -1,22 +1,17 @@
 <template>
   <div class="card">
-    <router-link :to="{ name: 'singlekeep', params: { keepId: keepData.id } }"
-      ><img
+    <router-link :to="{ name: 'singlekeep', params: { keepId: keepData.id } }">
+      <img
         @click="updateViews(keepData.id)"
         class="card-img-top"
         :src="keepData.img"
         alt="Testing image"
-    /></router-link>
+      />
+    </router-link>
     <div class="card-body">
-      <router-link
-        :to="{ name: 'singlekeep', params: { keepId: keepData.id } }"
-      >
-        <h5 @click="updateViews(keepData.id)" class="card-title">
-          {{ keepData.name }}
-        </h5>
-        <p @click="updateViews(keepData.id)" class="card-text">
-          {{ keepData.description }}
-        </p>
+      <router-link :to="{ name: 'singlekeep', params: { keepId: keepData.id } }">
+        <h5 @click="updateViews(keepData.id)" class="card-title">{{ keepData.name }}</h5>
+        <p @click="updateViews(keepData.id)" class="card-text">{{ keepData.description }}</p>
       </router-link>
       <div class="d-flex">
         <router-link
@@ -27,16 +22,24 @@
             type="button"
             @click="updateViews(keepData.id)"
             class="btn views"
-          >
-            View {{ keepData.views }}
-          </button></router-link
-        >
-        <button type="button" class="btn shares">
-          Share {{ keepData.shares }}
-        </button>
-        <button type="button" class="btn keeps">
-          Keep {{ keepData.keeps }}
-        </button>
+          >View {{ keepData.views }}</button>
+        </router-link>
+        <button type="button" class="btn shares">Share {{ keepData.shares }}</button>
+        <div class="dropdown">
+          <button
+            type="button"
+            class="btn keeps dropdown-toggle"
+            data-toggle="dropdown"
+          >Keep Me {{ keepData.keeps }}</button>
+          <div class="dropdown-menu">
+            <p
+              v-for="vault in vaults"
+              :key="vault.id"
+              class="dropdown-item"
+              @click="saveKeep(vault.id, keepData.id)"
+            >{{vault.name}}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -59,6 +62,29 @@ export default {
       } else if (keepToUpdate != null) {
         this.$store.dispatch("editKeep", keepToUpdate);
       }
+    },
+    saveKeep(vaultId, keepId) {
+      let vaultKeep = {
+        VaultId: vaultId,
+        KeepId: keepId
+      };
+      this.$store.dispatch("createVaultKeep", vaultKeep);
+      let keepToUpdate = this.$store.state.publicKeeps.find(
+        k => k.id == keepId
+      );
+      if (keepToUpdate == null) {
+        let privateKeepToUpdate = this.$store.state.privateKeeps.find(
+          k => k.id == keepId
+        );
+        this.$store.dispatch("editKeepKeeps", privateKeepToUpdate);
+      } else if (keepToUpdate != null) {
+        this.$store.dispatch("editKeepKeeps", keepToUpdate);
+      }
+    }
+  },
+  computed: {
+    vaults() {
+      return this.$store.state.vaults;
     }
   }
 };
