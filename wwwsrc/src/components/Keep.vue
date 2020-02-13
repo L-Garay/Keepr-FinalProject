@@ -40,7 +40,7 @@
             >{{vault.name}}</p>
           </div>
         </div>
-        <div class="dropdown">
+        <!-- <div class="dropdown">
           <button type="button" class="btn keeps dropdown-toggle" data-toggle="dropdown">Remove Me</button>
           <div class="dropdown-menu">
             <p
@@ -48,9 +48,9 @@
               :key="vaultKeep.id"
               class="dropdown-item"
               @click="removeKeep(vault.id, keepData.id)"
-            >{{this.$store.state.vaultKeeps.find(vk => vk.id == vaultKeep.id)}}</p>
+            >{{vaultKeep.id}}</p>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
@@ -105,14 +105,40 @@ export default {
         this.$store.dispatch("editKeepKeeps", keepToUpdate);
       }
     }
+    // removeKeep(vaultId, keepId) {
+    //   let vaultKeep = {
+    //     VaultId: vaultId,
+    //     KeepId: keepId
+    //   };
+    //   this.$store.dispatch("deleteVaultKeep", vaultKeep);
+    //   debugger;
+    //   let keepToUpdate = this.$store.state.publicKeeps.find(
+    //     k => k.id == keepId
+    //   );
+    //   if (keepToUpdate == null) {
+    //     let privateKeepToUpdate = this.$store.state.privateKeeps.find(
+    //       k => k.id == keepId
+    //     );
+    //     if (privateKeepToUpdate == null) {
+    //       let myKeepToUpdate = this.$store.state.myKeeps.find(
+    //         k => k.id == keepId
+    //       );
+    //       this.$store.dispatch("removeKeepKeeps", myKeepToUpdate);
+    //     }
+    //     this.$store.dispatch("removeKeepKeeps", privateKeepToUpdate);
+    //   } else if (keepToUpdate != null) {
+    //     this.$store.dispatch("removeKeepKeeps", keepToUpdate);
+    //   }
+    // }
   },
   computed: {
     vaults() {
       return this.$store.state.vaults;
-    },
-    vaultKeeps() {
-      return this.$store.state.vaultKeeps.filter(vk => vk.KeepId == this.$store.state.publicKeeps.find(k => k.id == ))
     }
+    // vaultKeeps() {
+    //   return this.$store.state.vaultKeeps;
+    //   // .filter(vk => vk.KeepId == this.$store.state.publicKeeps.find(k => k.id == ))
+    // }
   }
 };
 </script>

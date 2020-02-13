@@ -80,7 +80,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getKeeps");
-    this.$store.dispatch("getVaultKeeps");
+    // this.$store.dispatch("getVaultKeeps");
   },
   computed: {
     user() {

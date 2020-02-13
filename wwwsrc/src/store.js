@@ -121,6 +121,12 @@ export default new Vuex.Store({
       await api.put("keeps/keepkeeps", updatedKeep);
       dispatch("getKeeps");
     },
+    //TODO Remove keep count upon removal
+    // async removeKeepKeeps({ commit, dispatch }, updatedKeep) {
+    //   await api.put(
+    //     "keeps/removekeeps", );
+    //   dispatch("getKeepsByVaultId", updatedKeep.VaultId);
+    // },
 
     //#endregion
 
@@ -129,13 +135,20 @@ export default new Vuex.Store({
       await api.post("vaultkeeps", vaultKeep);
       dispatch("getKeeps");
       dispatch("getMyKeeps");
-      dispatch("getVaultKeeps");
+      // dispatch("getVaultKeeps");
     },
-
-    async getVaultKeeps({ commit, dispatch }) {
-      let res = await api.get("vaultkeeps");
-      commit("setVaultKeeps", res.data);
+    async deleteVaultKeep({ commit, dispatch }, updatedKeep) {
+      await api.delete(
+        "vaultkeeps/" + updatedKeep.VaultId + "/keeps/" + updatedKeep.KeepId,
+        updatedKeep
+      );
+      dispatch("getKeepsByVaultId", updatedKeep.VaultId);
     }
+
+    // async getVaultKeeps({ commit, dispatch }) {
+    //   let res = await api.get("vaultkeeps");
+    //   commit("setVaultKeeps", res.data);
+    // }
 
     //#endregion
   }
