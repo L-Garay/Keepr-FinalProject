@@ -44,6 +44,7 @@ export default new Vuex.Store({
     },
     setActiveKeep(state, keepData) {
       console.log("this should be active keep", keepData);
+      debugger;
       state.activeKeep = keepData;
     }
   },

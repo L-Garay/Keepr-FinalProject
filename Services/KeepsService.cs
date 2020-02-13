@@ -24,7 +24,7 @@ namespace Keepr.Services
       {
         throw new Exception("Invalid Id");
       }
-      else if (exists.IsPrivate == true)
+      else if (exists.IsPrivate == true && exists.UserId != userId)
       {
         throw new Exception("You can't access this");
       }
