@@ -97,6 +97,11 @@ export default new Vuex.Store({
       let res = await api.get("vaults/" + vaultId);
       commit("setActiveVault", res.data);
     },
+    async deleteVault({ commit, dispatch }, vaultId) {
+      await api.delete("vaults/" + vaultId);
+      dispatch("getVaults");
+      router.push({ name: "dashboard" });
+    },
 
     //#endregion
 
