@@ -17,6 +17,21 @@ namespace Keepr.Controllers
     {
       _vks = vks;
     }
+
+    [HttpGet]
+    public ActionResult<IEnumerable<VaultKeep>> GetVaultKeeps()
+    {
+      try
+      {
+        return Ok(_vks.GetVaultKeeps());
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+
     [HttpGet("{id}/keeps")]
     public ActionResult<IEnumerable<Keep>> GetKeeps(int id)
     {

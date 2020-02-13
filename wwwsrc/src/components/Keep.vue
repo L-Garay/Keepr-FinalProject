@@ -40,6 +40,17 @@
             >{{vault.name}}</p>
           </div>
         </div>
+        <div class="dropdown">
+          <button type="button" class="btn keeps dropdown-toggle" data-toggle="dropdown">Remove Me</button>
+          <div class="dropdown-menu">
+            <p
+              v-for="vaultKeep in vaultKeeps"
+              :key="vaultKeep.id"
+              class="dropdown-item"
+              @click="removeKeep(vault.id, keepData.id)"
+            >{{this.$store.state.vaultKeeps.find(vk => vk.id == vaultKeep.id)}}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -58,6 +69,12 @@ export default {
         let privateKeepToUpdate = this.$store.state.privateKeeps.find(
           k => k.id == keepId
         );
+        if (privateKeepToUpdate == null) {
+          let myKeepToUpdate = this.$store.state.myKeeps.find(
+            k => k.id == keepId
+          );
+          this.$store.dispatch("editKeep", myKeepToUpdate);
+        }
         this.$store.dispatch("editKeep", privateKeepToUpdate);
       } else if (keepToUpdate != null) {
         this.$store.dispatch("editKeep", keepToUpdate);
@@ -92,6 +109,9 @@ export default {
   computed: {
     vaults() {
       return this.$store.state.vaults;
+    },
+    vaultKeeps() {
+      return this.$store.state.vaultKeeps.filter(vk => vk.KeepId == this.$store.state.publicKeeps.find(k => k.id == ))
     }
   }
 };

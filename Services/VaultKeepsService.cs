@@ -13,6 +13,12 @@ namespace Keepr.Services
       _vkr = vkr;
     }
 
+
+    internal IEnumerable<VaultKeep> GetVaultKeeps()
+    {
+      return _vkr.Get();
+    }
+
     internal IEnumerable<Keep> GetKeepsByVaultId(int id)
     {
       return _vkr.GetKeepsByVaultId(id);
