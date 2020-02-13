@@ -8,18 +8,14 @@
       </div>
       <div class="col-3 buttonSection">
         <button type="button" class="btn views">Views {{ keep.views }}</button>
-        <button type="button" class="btn shares">
-          Share {{ keep.shares }}
-        </button>
+        <button type="button" class="btn shares">Share {{ keep.shares }}</button>
         <button type="button" class="btn keeps">Keep {{ keep.keeps }}</button>
         <button
-          v-if="showBtn"
+          v-if="this.keep.userId == this.$auth.user.sub"
           @click="deleteKeep(keep.id)"
           type="button"
           class="btn delete"
-        >
-          Delete
-        </button>
+        >Delete</button>
       </div>
     </div>
   </div>
@@ -29,17 +25,10 @@
 export default {
   name: "singlekeep",
   data() {
-    return {
-      showBtn: false
-    };
+    return {};
   },
   mounted() {
     this.$store.dispatch("getKeepById", this.$route.params.keepId);
-    if (this.keep.UserId == this.$auth.UserId) {
-      this.showBtn = true;
-    } else if (this.keep.UserId != this.$auth.UserId) {
-      this.showBtn = false;
-    }
   },
   computed: {
     keep() {
