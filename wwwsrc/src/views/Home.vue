@@ -2,7 +2,7 @@
   <div class="container-fluid home">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
-        <h1>Welcome Home</h1>
+        <h1>Welcome To Keepr</h1>
         <button class="btn btn-success" type="button" @click="toggleForm">Create a keep</button>
       </div>
       <div class="col-8" v-if="showForm">
@@ -122,3 +122,16 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  font-family: "Press Start 2P";
+  color: orange;
+}
+.home {
+  background-image: url("../assets/backgrounds/darkWall.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+</style>

@@ -144,6 +144,12 @@ export default {
 </script>
 
 <style>
+.card {
+}
+img {
+  max-width: 450px;
+  max-height: 650px;
+}
 .views {
   border: 1pt solid green;
   background-color: lightgreen;

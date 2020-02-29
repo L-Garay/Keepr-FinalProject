@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg">
     <router-link class="navbar-brand" :to="{ name: 'home' }">Keepr</router-link>
     <button
       class="navbar-toggler"
@@ -26,8 +26,8 @@
         </li>
       </ul>
       <span class="navbar-text">
-        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button class="btn login" @click="login" v-if="!$auth.isAuthenticated">Login</button>
+        <button class="btn logout" @click="logout" v-else>Logout</button>
       </span>
     </div>
   </nav>
@@ -58,4 +58,22 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+nav {
+  background-color: rgba(0, 0, 0, 0.856);
+}
+nav a {
+  color: orange;
+}
+.logout {
+  color: orange;
+  background-color: grey;
+  border: 1pt solid orange;
+}
+.logout:hover {
+  color: red;
+  background-color: black;
+  border: 1pt solid red;
+  box-shadow: 0 0 25px red;
+}
+</style>
