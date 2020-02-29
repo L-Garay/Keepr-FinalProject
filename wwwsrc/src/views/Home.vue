@@ -1,59 +1,88 @@
 <template>
   <div class="container-fluid home">
+    <video v-if="modalOpen" autoplay muted loop id="video">
+      <source src="../assets/backgrounds/wallAnimated.mp4" type="video/mp4" />
+    </video>
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
         <h1>Welcome To Keepr</h1>
-        <button class="btn btn-success" type="button" @click="toggleForm">Create a keep</button>
+        <button
+          class="btn btn-success"
+          type="button"
+          data-toggle="modal"
+          data-target="#createModal"
+          data-backdrop="false"
+          @click="toggleModal"
+        >Create a keep</button>
       </div>
-      <div class="col-8" v-if="showForm">
-        <div id="form">
-          <form class="form-group" @submit.prevent="addKeep">
-            <div>
-              Name:
-              <input
-                v-model="newKeep.name"
-                class="form-control"
-                required
-                type="text"
-                placeholder="Name of keep"
-              />
+
+      <div class="modal fade" id="createModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="createModalTitle">Create a keep</h5>
+              <button type="button" @click="toggleModal" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div>
-              Image URL:
-              <input
-                v-model="newKeep.imgUrl"
-                class="form-control"
-                type="text"
-                placeholder="What's your keep about"
-              />
+            <div class="modal-body">
+              <form class="form-group" @submit.prevent="addKeep">
+                <div>
+                  Name:
+                  <input
+                    v-model="newKeep.name"
+                    class="form-control"
+                    required
+                    type="text"
+                    placeholder="Name of keep"
+                  />
+                </div>
+                <div>
+                  Image URL:
+                  <input
+                    v-model="newKeep.imgUrl"
+                    class="form-control"
+                    type="text"
+                    placeholder="What's your keep about"
+                  />
+                </div>
+                <div>
+                  Description:
+                  <textarea
+                    v-model="newKeep.description"
+                    class="form-control"
+                    cols="30"
+                    rows="3"
+                    maxlength="300"
+                    placeholder="What's your keep about"
+                    required
+                  ></textarea>
+                </div>
+                <div>
+                  <input
+                    v-model="newKeep.private"
+                    class="form-check-input"
+                    type="checkbox"
+                    value
+                    id="privacyCheck"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="privacyCheck"
+                  >Check this if you want to make it private</label>
+                </div>
+                <div class="buttons">
+                  <button class="btn btn-success" type="submit">Submit Keep</button>
+                  <button
+                    type="button"
+                    @click="toggleModal"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >Close</button>
+                </div>
+              </form>
             </div>
-            <div>
-              Description:
-              <textarea
-                v-model="newKeep.description"
-                class="form-control"
-                cols="30"
-                rows="3"
-                maxlength="300"
-                placeholder="What's your keep about"
-                required
-              ></textarea>
-            </div>
-            <div>
-              <input
-                v-model="newKeep.private"
-                class="form-check-input"
-                type="checkbox"
-                value
-                id="privacyCheck"
-              />
-              <label
-                class="form-check-label"
-                for="privacyCheck"
-              >Check this if you want to make it private</label>
-            </div>
-            <button class="btn btn-success" type="submit">Submit Keep</button>
-          </form>
+          </div>
         </div>
       </div>
       <div class="card-columns">
@@ -69,7 +98,7 @@ export default {
   name: "home",
   data() {
     return {
-      showForm: false,
+      modalOpen: false,
       newKeep: {
         name: "",
         description: "",
@@ -91,11 +120,11 @@ export default {
     }
   },
   methods: {
-    toggleForm() {
-      if (this.showForm == false) {
-        this.showForm = true;
-      } else if (this.showForm == true) {
-        this.showForm = false;
+    toggleModal() {
+      if (this.modalOpen == false) {
+        this.modalOpen = true;
+      } else if (this.modalOpen == true) {
+        this.modalOpen = false;
       }
     },
     addKeep() {
@@ -133,5 +162,28 @@ h1 {
   background-position: center;
   background-size: cover;
   background-repeat: repeat-y;
+}
+.form-check-input {
+  margin: 12pt 0 0 5pt;
+}
+.form-check-label {
+  margin: 7.5pt 0 0 20pt;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10pt;
+  padding-top: 10pt;
+  border-top: 1pt solid grey;
+}
+#video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+
+  /* z-index:; */
+}
+.modal-backdrop.show {
+  opacity: 0;
 }
 </style>
