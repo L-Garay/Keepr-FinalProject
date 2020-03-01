@@ -43,11 +43,12 @@
         </div>
       </div>
     </div>
+
     <div class="vaultSection">
       <div class="row">
         <div class="col-2 fakeCard" v-for="vault in vaults" :key="vault.id">
           <router-link :to="{ name: 'singlevault', params: { vaultId: vault.id } }">
-            <h5>{{ vault.name }}</h5>
+            <h4>{{ vault.name }}</h4>
           </router-link>
           <p>{{ vault.description }}</p>
         </div>
@@ -121,9 +122,14 @@ export default {
   font-family: "Press Start 2P";
 }
 h2,
-h5 {
+h5,
+h4 {
   color: orange;
-  text-shadow: 0 0 6px black;
+  text-shadow: 0 0 8px black;
+}
+p {
+  text-shadow: 0 0 6px orange;
+  color: black;
 }
 button {
   border: 1pt solid orange;
@@ -169,21 +175,37 @@ form button {
   color: white;
 }
 .vaultSection {
-  border: 3pt solid red;
+  /* box-shadow: 4pt 4pt 4pt black; */
+  box-shadow: 0 0 20px orange;
+  background-color: rgba(0, 0, 0, 0.541);
   height: 40vh;
-  overflow-x: auto;
-  max-width: 100%;
   margin: 10pt 0 10pt 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .vaultSection .row {
-  width: 300%;
   padding-left: 10pt;
+  flex-wrap: wrap;
+}
+#video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+  max-height: 100%;
 }
 .fakeCard {
-  border: 1pt solid black;
+  text-align: center;
+  background-color: rgba(63, 63, 63, 0.815);
+  border: 1pt solid orange;
   margin: 5pt;
-  max-width: 18em;
   padding: 10pt;
+}
+a {
+  color: orange;
+}
+h4:hover {
+  text-shadow: 0 0 6px orange !important;
 }
 .yourKeeps-section {
   height: 100vh;
