@@ -21,14 +21,14 @@
           <button
             type="button"
             @click="updateViews(keepData.id)"
-            class="btn views"
+            class="btn keepBtns"
           >View {{ keepData.views }}</button>
         </router-link>
-        <button type="button" class="btn shares">Share {{ keepData.shares }}</button>
+        <button type="button" class="btn keepBtns">Share {{ keepData.shares }}</button>
         <div class="dropdown">
           <button
             type="button"
-            class="btn keeps dropdown-toggle"
+            class="btn keepBtns dropdown-toggle"
             data-toggle="dropdown"
           >Keep Me {{ keepData.keeps }}</button>
           <div class="dropdown-menu">
@@ -143,26 +143,50 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card {
+  background-color: rgba(0, 0, 0, 0.822);
 }
-img {
-  max-width: 450px;
-  max-height: 650px;
+a {
+  color: orange;
+  text-shadow: 1pt 1pt 3pt black;
+  font-family: "Press Start 2P";
 }
-.views {
-  border: 1pt solid green;
-  background-color: lightgreen;
+a:hover {
+  color: orange;
+  text-shadow: 0 0 7pt orange;
+  font-family: "Press Start 2P";
+}
+button.btn {
+  font-family: "Press Start 2P";
+  font-size: 0.7rem;
+}
+/* img {
+  max-width: 350px;
+  max-height: 550px;
+} */
+.keepBtns {
+  border: 1pt solid orange;
+  color: orange;
+  background-color: rgb(49, 49, 49);
   margin: 5pt;
 }
-.shares {
-  border: 1pt solid blue;
-  background-color: lightskyblue;
-  margin: 5pt;
+.keepBtns:hover {
+  text-shadow: 0 0 3px orange;
+  box-shadow: 0 0 8px orange;
 }
-.keeps {
-  border: 1pt solid yellow;
-  background-color: lightyellow;
-  margin: 5pt;
+.dropdown-menu {
+  background-color: rgb(0, 0, 0);
+  border: 1pt solid orange;
+}
+.dropdown-item {
+  color: orange;
+  font-family: "Press Start 2P";
+  font-size: 0.7rem;
+}
+.dropdown-item:hover {
+  cursor: pointer;
+  color: black;
+  text-shadow: 0 0 3px orange;
 }
 </style>

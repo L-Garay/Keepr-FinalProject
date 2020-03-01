@@ -9,9 +9,7 @@
         </h5>
       </div>
       <div class="col-12">
-        <button class="btn btn-success" type="button" @click="toggleForm">
-          Create a Vault
-        </button>
+        <button class="btn btn-success" type="button" @click="toggleForm">Create a Vault</button>
       </div>
       <div class="col-12" v-if="showForm">
         <div id="form">
@@ -46,11 +44,9 @@
     <div class="vaultSection">
       <div class="row">
         <div class="col-2 fakeCard" v-for="vault in vaults" :key="vault.id">
-          <router-link
-            :to="{ name: 'singlevault', params: { vaultId: vault.id } }"
-          >
-            <h5>{{ vault.name }}</h5></router-link
-          >
+          <router-link :to="{ name: 'singlevault', params: { vaultId: vault.id } }">
+            <h5>{{ vault.name }}</h5>
+          </router-link>
           <p>{{ vault.description }}</p>
         </div>
         <!-- <vault  :vaultData="vault" /> -->
@@ -113,7 +109,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .vaultSection {
   border: 3pt solid red;
   height: 40vh;
