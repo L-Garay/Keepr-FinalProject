@@ -11,7 +11,7 @@
     <div class="card-body">
       <router-link :to="{ name: 'singlekeep', params: { keepId: keepData.id } }">
         <h5 @click="updateViews(keepData.id)" class="card-title">{{ keepData.name }}</h5>
-        <p @click="updateViews(keepData.id)" class="card-text">{{ keepData.description }}</p>
+        <!-- <p @click="updateViews(keepData.id)" class="card-text">{{ keepData.description }}</p> -->
       </router-link>
       <div class="d-flex">
         <router-link
