@@ -1,13 +1,13 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid vault">
     <div class="row">
-      <div class="col-10 title">
-        <h2>Welcom to your vault, {{ vault.name }}</h2>
+      <div class="col-6 offset-3 title">
+        <h2>Welcome to your vault, {{ vault.name }}</h2>
       </div>
-      <div class="col-2">
-        <i class="far fa-trash-alt fa-lg deleteIcon" @click="deleteVault(vault.id)"></i>
+      <div class="col-1 offset-2">
+        <button class="btn deleteBtn" type="button" @click="deleteVault(vault.id)">Delete Vault</button>
       </div>
-      <div class="col-12 d-flex justify-content-center">
+      <div class="col-12 d-flex justify-content-center mb-3">
         <div class="dropdown">
           <button
             type="button"
@@ -24,9 +24,9 @@
           </div>
         </div>
       </div>
-      <div class="card-columns">
-        <keep v-for="keep in keeps" :key="keep.id" :keepData="keep" />
-      </div>
+    </div>
+    <div class="card-columns">
+      <keep v-for="keep in keeps" :key="keep.id" :keepData="keep" />
     </div>
   </div>
 </template>
@@ -84,12 +84,61 @@ export default {
 };
 </script>
 
-<style>
-.deleteIcon {
+<style scoped>
+.vault {
+  font-family: "Press Start 2P";
+  color: orange;
+  background-image: url("../assets/backgrounds/darkWall.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat-y;
+  /* background-color: grey; */
+  height: 93.5vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+.deleteBtn {
+  border: 1pt solid orange;
+  background-color: rgb(46, 46, 46);
+  color: orange;
+  text-shadow: 0 0 6px black;
+  margin-top: 7pt;
+}
+.deleteBtn:hover {
+  text-shadow: 0 0 6px red;
+  box-shadow: 0 0 10px red;
   color: red;
-  margin-top: 11pt;
+  border: 1pt solid red;
+  background-color: black;
 }
 .title {
   text-align: center;
+  text-shadow: 0 0 6px black;
+  margin-top: 7pt;
+}
+.keeps {
+  color: orange;
+  text-shadow: 0 0 6px black;
+  border: 1pt solid orange;
+  background-color: rgb(46, 46, 46);
+}
+.keeps:hover {
+  text-shadow: 0 0 6px red;
+  box-shadow: 0 0 10px red;
+  color: red;
+  border: 1pt solid red;
+  background-color: black;
+}
+.dropdown-menu {
+  background-color: black;
+  border: 1pt solid orange;
+}
+.dropdown-item {
+  color: orange;
+}
+.dropdown-item:hover {
+  cursor: pointer;
+  text-shadow: 0 0 6px orange;
+  color: black;
 }
 </style>
