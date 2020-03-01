@@ -64,6 +64,7 @@ nav {
 }
 nav a {
   color: orange;
+  font-family: "Press Start 2P";
 }
 nav a:hover {
   color: orange;
@@ -76,6 +77,7 @@ nav a {
   color: orange;
   background-color: grey;
   border: 1pt solid orange;
+  font-family: "Press Start 2P";
 }
 .logout:hover {
   color: red;

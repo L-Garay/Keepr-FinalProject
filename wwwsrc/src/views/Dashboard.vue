@@ -1,18 +1,18 @@
 <template>
   <div class="dashboard container-fluid">
     <div class="row">
-      <div class="col-12 d-flex flex-column align-items-center">
+      <div class="col-12 d-flex flex-column align-items-center mt-2">
         <h2>Welcome to your Dashboard!</h2>
         <h5>
           Here you can see the keeps you've created OR create and view your
           Vaults.
         </h5>
       </div>
-      <div class="col-12">
-        <button class="btn btn-success" type="button" @click="toggleForm">Create a Vault</button>
+      <div class="col-12 d-flex justify-content-center">
+        <button class="btn" type="button" @click="toggleForm">Create a Vault</button>
       </div>
-      <div class="col-12" v-if="showForm">
-        <div id="form">
+      <div class="col-6 offset-3" v-if="showForm">
+        <div class="d-flex justify-content-center" id="form">
           <form class="form-group" @submit.prevent="addVault">
             <div>
               Name:
@@ -36,7 +36,9 @@
                 required
               ></textarea>
             </div>
-            <button class="btn btn-success" type="submit">Submit Vault</button>
+            <div class="formBtn">
+              <button class="btn submitBtn" type="submit">Submit Vault</button>
+            </div>
           </form>
         </div>
       </div>
@@ -100,6 +102,7 @@ export default {
       };
       this.$store.dispatch("addVault", vault);
       this.newVault = { name: "", description: "" };
+      this.toggleForm();
     }
   },
   components: {
@@ -110,6 +113,61 @@ export default {
 </script>
 
 <style scoped>
+.dashboard {
+  background-image: url("../assets/backgrounds/darkWall.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: repeat-y;
+  font-family: "Press Start 2P";
+}
+h2,
+h5 {
+  color: orange;
+  text-shadow: 0 0 6px black;
+}
+button {
+  border: 1pt solid orange;
+  color: orange;
+  background-color: rgb(49, 49, 49);
+}
+button:hover {
+  text-shadow: 0 0 5px orange;
+  box-shadow: 0 0 15px orange;
+  color: orange;
+}
+form {
+  color: orange;
+  text-shadow: 0 0 6px black;
+}
+form button {
+  justify-self: center;
+}
+.formBtn {
+  text-align: center;
+  margin-top: 10pt;
+}
+.submitBtn {
+  animation: neon 1.08s ease-in-out infinite alternate;
+}
+@keyframes neon {
+  from {
+    text-shadow: 0 0 20px rgba(252, 238, 52, 0.92),
+      0 0 30px rgba(250, 191, 65, 0.774), 0 0 12px rgba(242, 132, 30, 0.945),
+      0 0 21px rgba(245, 163, 12, 0.92), 0 0 34px rgba(242, 62, 30, 0.78),
+      0 0 54px rgba(243, 113, 26, 0.92);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(252, 73, 41, 0.92),
+      0 0 30px rgba(238, 84, 57, 0.34), 0 0 12px rgba(242, 97, 30, 0.52),
+      0 0 21px rgba(245, 47, 12, 0.92), 0 0 34px rgba(245, 66, 12, 0.78),
+      0 0 54px rgba(245, 39, 12, 0.92);
+  }
+}
+.form-control {
+  border: 1pt solid orange;
+  background-color: rgb(46, 46, 46);
+  color: white;
+}
 .vaultSection {
   border: 3pt solid red;
   height: 40vh;

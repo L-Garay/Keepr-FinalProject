@@ -235,6 +235,7 @@ h1 {
 .form-control {
   background-color: grey;
   border: 1pt solid orange;
+  color: white;
 }
 ::placeholder {
   color: white;
