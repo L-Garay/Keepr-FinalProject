@@ -182,6 +182,7 @@ h1 {
 }
 .create {
   border: 1pt solid orange;
+  font-family: "Press Start 2P";
   color: orange;
   background-color: rgb(49, 49, 49);
   margin-left: 15pt;
@@ -210,7 +211,7 @@ h1 {
   background-color: rgba(0, 0, 0, 0.39);
   color: orange;
   text-shadow: 0 0 10px orange;
-  box-shadow: 2pt 2pt 5pt orange;
+  box-shadow: 0 0 8px orange;
 }
 .close2 {
   border: 1pt solid orange;
@@ -222,14 +223,16 @@ h1 {
   background-color: rgba(0, 0, 0, 0.39);
   color: red;
   text-shadow: 0 0 10px red;
-  box-shadow: 2pt 2pt 5pt red;
+  box-shadow: 0 0 10px red;
 }
 .modal-header {
   background-color: black;
+  font-family: "Press Start 2P";
   color: orange;
 }
 .modal-body {
   background-color: rgb(46, 46, 46);
+  font-family: "Press Start 2P";
   color: orange;
 }
 .form-control {
