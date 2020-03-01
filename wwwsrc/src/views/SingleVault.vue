@@ -135,10 +135,11 @@ export default {
 }
 .dropdown-item {
   color: orange;
+  background-color: black;
 }
 .dropdown-item:hover {
   cursor: pointer;
-  text-shadow: 0 0 6px orange;
-  color: black;
+  text-shadow: 0 0 10px orange;
+  color: rgb(252, 202, 109);
 }
 </style>

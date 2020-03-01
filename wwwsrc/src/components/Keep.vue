@@ -183,10 +183,11 @@ button.btn {
   color: orange;
   font-family: "Press Start 2P";
   font-size: 0.7rem;
+  background-color: black;
 }
 .dropdown-item:hover {
   cursor: pointer;
-  color: black;
-  text-shadow: 0 0 3px orange;
+  color: rgb(255, 201, 100);
+  text-shadow: 0 0 7px orange;
 }
 </style>
